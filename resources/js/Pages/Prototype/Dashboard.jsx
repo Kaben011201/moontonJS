@@ -121,9 +121,9 @@ export default function Dashboard() {
         draggable: ">1",
         pageDots: false,
         prevNextButtons: false,
-        autoPlay: true,
-        selectedAttraction: 0.01,
-        friction: 0.15,
+        // autoPlay: true,
+        // selectedAttraction: 0.01,
+        // friction: 0.15,
     };
 
     const moviesFlickity = {
@@ -131,8 +131,8 @@ export default function Dashboard() {
         contain: true,
         pageDots: false,
         prevNextButtons: false,
-        autoPlay: true,
-        freeSroll: true,
+        // autoPlay: true,
+        // freeSroll: true,
     };
 
     useEffect(() => {

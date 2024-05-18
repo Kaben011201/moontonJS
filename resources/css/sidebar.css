@@ -5,11 +5,12 @@
 .side-link svg {
     @apply text-[#B7B7B7];
 }
-.side-link.active {
+
+.side-link:focus {
     @apply font-semibold border-r-[3px] border-alerange;
 }
 
-.side-link.active svg {
+.side-link:focus svg {
     @apply text-alerange;
 }
 

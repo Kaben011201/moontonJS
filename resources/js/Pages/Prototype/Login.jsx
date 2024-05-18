@@ -61,7 +61,7 @@ export default function Login() {
 
                         <div className="grid space-y-[14px] mt-[30px] w-[70%]">
                             <Link href={route("prototype.dashboard")}>
-                                <PrimaryButton type="button" variant="primary">
+                                <PrimaryButton type="button">
                                     <span className="text-base font-semibold">
                                         Start Watching
                                     </span>
