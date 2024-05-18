@@ -13,7 +13,7 @@ export default function Sidebar() {
                         {/* <!-- Menu --> */}
                         <div>
                             <div className="text-gray-1 text-sm mb-4">Menu</div>
-                            <a href="#" className="side-link">
+                            <Link href={route("prototype.dashboard")} className="side-link">
                                 <svg
                                     width="24"
                                     height="24"
@@ -31,7 +31,7 @@ export default function Sidebar() {
                                     </g>
                                 </svg>
                                 Discover
-                            </a>
+                            </Link>
                             <a href="#!" className="side-link">
                                 <svg
                                     width="24"
