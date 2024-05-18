@@ -1,11 +1,11 @@
-import './bootstrap';
-import '../css/app.css';
-import '../css/input.css';
-import '../css/button.css';
-
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import './bootstrap';
+import '../css/app.css';
+import '../css/button.css';
+import '../css/sidebar.css';
+import '../css/input.css';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

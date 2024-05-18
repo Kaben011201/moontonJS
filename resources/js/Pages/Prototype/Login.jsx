@@ -5,10 +5,10 @@ import TextInput from "@/Components/TextInput";
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
 
-export default function Login2() {
+export default function Login() {
     return (
         <>
-        <Head title="Login"/>
+            <Head title="Login" />
             <div className="mx-auto max-w-screen min-h-screen bg-black text-white md:px-10 px-3">
                 <section className="w-[58%] overflow-hidden fixed">
                     <SideImage />
@@ -60,11 +60,13 @@ export default function Login2() {
                         </div>
 
                         <div className="grid space-y-[14px] mt-[30px] w-[70%]">
-                            <PrimaryButton type="button" variant="primary">
-                                <span className="text-base font-semibold">
-                                    Start Watching
-                                </span>
-                            </PrimaryButton>
+                            <Link href={route("prototype.dashboard")}>
+                                <PrimaryButton type="button" variant="primary">
+                                    <span className="text-base font-semibold">
+                                        Start Watching
+                                    </span>
+                                </PrimaryButton>
+                            </Link>
 
                             <Link href={route("prototype.register")}>
                                 <PrimaryButton
