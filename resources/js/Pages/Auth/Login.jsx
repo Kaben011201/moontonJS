@@ -1,97 +1,133 @@
-import { useEffect } from 'react';
-import Checkbox from '@/Components/Checkbox';
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm } from '@inertiajs/react';
+import Checkbox from "@/Components/Checkbox";
+import InputError from "@/Components/InputError";
+import InputLabel from "@/Components/InputLabel";
+import PrimaryButton from "@/Components/PrimaryButton";
+import SideImage from "@/Components/SideImage";
+import TextInput from "@/Components/TextInput";
+import { Head, Link, useForm } from "@inertiajs/react";
+import React from "react";
+import { useEffect } from "react";
 
-export default function Login({ status, canResetPassword }) {
+export default function Login() {
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
-        password: '',
+        email: "",
+        password: "",
         remember: false,
     });
 
     useEffect(() => {
         return () => {
-            reset('password');
+            reset("password");
         };
     }, []);
+
+    const onHandleChange = (event) => {
+        setData(event.target.name, event.target.value);
+    };
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('login'));
+        post(route("login"));
     };
 
     return (
-        <GuestLayout>
-            <Head title="Log in" />
+        <>
+            <Head title="Login " />
+            <div className="mx-auto max-w-screen min-h-screen bg-black text-white md:px-10 px-3">
+                <section className="w-[58%] overflow-hidden fixed">
+                    <SideImage />
+                </section>
 
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
-
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) => setData('remember', e.target.checked)}
+                <section className="py-24 ml-[65%]">
+                    <div className="mb-16">
+                        <img
+                            className="mb-10"
+                            src={"/images/moonton-white.svg"}
+                            alt="Logo Moonton"
                         />
-                        <span className="ms-2 text-sm text-gray-600">Remember me</span>
-                    </label>
-                </div>
+                        <div>
+                            <h2 className="font-semibold text-2xl mb-5">
+                                Welcome Back
+                            </h2>
+                            <p className="opacity-[0.5] w-[55%] leading-7">
+                                Explore our new movie and get the better insight
+                                for your life
+                            </p>
+                        </div>
+                    </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Forgot your password?
-                        </Link>
-                    )}
+                    <form className="flex flex-col gap-8" onSubmit={submit}>
+                        <div className="inline-flex flex-col w-[70%] gap-6">
+                            <div>
+                                <InputLabel value="Email Address" />
+                                <TextInput
+                                    name="email"
+                                    id="email"
+                                    type="email"
+                                    placeholder="Email Address"
+                                    required
+                                    autoComplete="username"
+                                    value={data.email}
+                                    handleChange={onHandleChange}
+                                />
+                                <InputError message={errors.email} />
+                            </div>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
-                </div>
-            </form>
-        </GuestLayout>
+                            <div>
+                                <InputLabel value="Password" />
+                                <TextInput
+                                    name="password"
+                                    id="password"
+                                    type="password"
+                                    placeholder="Password"
+                                    required
+                                    autoComplete="password"
+                                    value={data.password}
+                                    handleChange={onHandleChange}
+                                />
+                                <InputError message={errors.password} />
+                            </div>
+                            {/* <div className="block mt-4">
+                                <label className="flex items-center">
+                                    <Checkbox
+                                        name="remember"
+                                        checked={data.remember}
+                                        onChange={(e) =>
+                                            setData(
+                                                "remember",
+                                                e.target.checked
+                                            )
+                                        }
+                                    />
+                                    <span className="ms-2 text-sm text-white">
+                                        Remember me
+                                    </span>
+                                </label>
+                            </div> */}
+                        </div>
+
+                        <div className="grid space-y-[14px] mt-[30px] w-[70%]">
+                            <PrimaryButton processing={processing}>
+                                <span className="text-base font-semibold">
+                                    Start Watching
+                                </span>
+                            </PrimaryButton>
+
+                            <Link href={route("register")}>
+                                <PrimaryButton
+                                    type="button"
+                                    variant="light-outline"
+                                >
+                                    <span className="text-base text-white">
+                                        Create New Account
+                                    </span>
+                                </PrimaryButton>
+                            </Link>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </>
     );
 }
