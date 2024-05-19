@@ -11,6 +11,14 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Route::prefix('auth')->name('auth.')->group(function () {
+
+//     Route::get('/register', function () {
+//         return Inertia::render('Auth/Register');
+//     })->name('register');
+
+// });
+
 Route::prefix('prototype')->name('prototype.')->group(function(){
     route::get('/login', function(){
         return Inertia::render('Prototype/Login');
