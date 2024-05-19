@@ -1,7 +1,8 @@
+import { Link } from "@inertiajs/react";
 import React from "react";
 import { useState } from "react";
 
-export default function Topbar() {
+export default function Topbar({auth}) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const triggerDropdown = () => {
@@ -17,7 +18,7 @@ export default function Topbar() {
             />
             <div className="flex items-center gap-4">
                 <span className="text-black text-sm font-medium">
-                    Welcome, Bendry Lakburlawal
+                    Welcome, {auth}
                 </span>
 
                 {/* <!-- user avatar --> */}
@@ -46,12 +47,14 @@ export default function Topbar() {
                             >
                                 Settings
                             </a>
-                            <a
-                                href="sign_in.html"
-                                className="transition-all hover:bg-sky-100 p-4"
+                            <Link
+                                href={route('logout')}
+                                method="post"
+                                as="button"
+                                className="transition-all hover:bg-sky-100 p-4 text-left"
                             >
                                 Sign Out
-                            </a>
+                            </Link>
                         </div>
                     )}
                 </div>

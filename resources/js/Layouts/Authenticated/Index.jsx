@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 
-export default function Authenticated({ children }) {
+export default function Authenticated({ auth, children }) {
     return (
         <>
             <div>
@@ -15,7 +15,8 @@ export default function Authenticated({ children }) {
                     <div className="ml-[300px] px-[50px]">
                         <div className="py-10 flex flex-col gap-[50px]">
                             {/* START : Topbar */}
-                            <Topbar/>
+                            <Topbar auth={auth.user.name}/> 
+                            {/* the auth above same {{Auth::user()->name}} */}
                             {/* END : Topbar */}
                             {children}
                         </div>
