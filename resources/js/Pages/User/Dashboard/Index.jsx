@@ -195,7 +195,7 @@ export default function Dashboard({ auth, featuredMovies, movies }) {
                               <MovieCard
                                   key={movie.id}
                                   name={movie.name}
-                                  info={movie.info}
+                                  category={movie.category}
                                   thumbnail={movie.thumbnail}
                                   slug={movie.slug}
                               />

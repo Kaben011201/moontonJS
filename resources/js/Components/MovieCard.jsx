@@ -5,11 +5,11 @@ import { Link } from "@inertiajs/react";
 MovieCard.propTypes = {
     slug: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    info: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
 }
 
-export default function MovieCard({ slug, name, info, thumbnail }) {
+export default function MovieCard({ slug, name, category, thumbnail }) {
     return (
         <div className="absolute group overflow-hidden mr-[30px]">
             <img
@@ -21,7 +21,7 @@ export default function MovieCard({ slug, name, info, thumbnail }) {
                 <div className="px-7 pb-7">
                     <div className="font-medium text-xl text-white">{name}</div>
                     <p className="mb-0 text-gray-300 text-base mt-[10px]">
-                        {info}
+                        {category}
                     </p>
                 </div>
             </div>
@@ -31,7 +31,7 @@ export default function MovieCard({ slug, name, info, thumbnail }) {
             >
                 <img src="/icons/ic_play.svg" className="" width="50" alt="" />
             </div>
-            <Link href={route("prototype.movie.show", slug)} className="inset-0 absolute z-50"></Link>
+            <Link href={route("user.dashboard.movie.show", slug)} className="inset-0 absolute z-50"></Link>
         </div>
     );
 }
