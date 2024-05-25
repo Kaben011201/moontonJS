@@ -3,17 +3,17 @@ import Authenticated from "@/Layouts/Authenticated/Index";
 import { Head } from "@inertiajs/react";
 import { React, useState, useEffect } from "react";
 import Flickity from "react-flickity-component";
-import featured1 from "/public/images/featured-1.png"; 
-import featured2 from "/public/images/featured-2.png";
-import featured3 from "/public/images/featured-3.png";
-import movie1 from "/public/images/browse-1.png";
-import movie2 from "/public/images/browse-2.png";
-import movie3 from "/public/images/browse-3.png";
-import movie4 from "/public/images/browse-4.png";
-import movie5 from "/public/images/browse-5.png";
-import movie6 from "/public/images/browse-6.png";
-import movie7 from "/public/images/browse-7.png";
-import movie8 from "/public/images/browse-8.png";
+// import featured1 from "/public/images/featured-1.png";
+// import featured2 from "/public/images/featured-2.png";
+// import featured3 from "/public/images/featured-3.png";
+// import movie1 from "/public/images/browse-1.png";
+// import movie2 from "/public/images/browse-2.png";
+// import movie3 from "/public/images/browse-3.png";
+// import movie4 from "/public/images/browse-4.png";
+// import movie5 from "/public/images/browse-5.png";
+// import movie6 from "/public/images/browse-6.png";
+// import movie7 from "/public/images/browse-7.png";
+// import movie8 from "/public/images/browse-8.png";
 import MovieCard from "@/Components/MovieCard";
 
 // const FeaturedList = [

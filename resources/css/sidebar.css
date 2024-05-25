@@ -6,11 +6,11 @@
     @apply text-[#B7B7B7];
 }
 
-.side-link:focus {
+.side-link.active {
     @apply font-semibold border-r-[3px] border-alerange;
 }
 
-.side-link:focus svg {
+.side-link.active svg {
     @apply text-alerange;
 }
 
