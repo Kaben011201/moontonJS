@@ -30,7 +30,7 @@ export default function FeaturedMovie({ slug, name, category, thumbnail, rating 
             </div>
             {/* <!-- bottom detail --> */}
             <div
-                className="absolute bottom-0 h-[100px] left-0 right-0 bg-gradient-to-t from-black rounded-bl-[28px]
+                className="absolute bottom-0  left-0 right-0 bg-gradient-to-t from-black rounded-bl-[28px]
                 rounded-br-[28px] flex justify-between items-center px-7 h-[130px]"
             >
                 <div>
@@ -45,7 +45,7 @@ export default function FeaturedMovie({ slug, name, category, thumbnail, rating 
                     <img src="/icons/ic_play.svg" width="50" alt="" />
                 </div>
             </div>
-            <Link href={route("prototype.movie.show", slug)} className="inset-0 absolute z-50"></Link>
+            <Link href={route("user.dashboard.movie.show", slug)} className="inset-0 absolute z-50"></Link>
         </div>
     );
 }

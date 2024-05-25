@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 PrimaryButton.propTypes = {
     type: PropTypes.oneOf(["button", "submit", "reset"]),
     className: PropTypes.string,
-    variant: PropTypes.oneOf(["primary", "warning", "danger", "light-outine", "white-outline"]),
+    variant: PropTypes.oneOf(["primary", "warning", "danger", "light-outline", "white-outline"]),
     processing: PropTypes.bool,
     children: PropTypes.node,
 }
