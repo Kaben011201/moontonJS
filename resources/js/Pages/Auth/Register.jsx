@@ -1,117 +1,172 @@
-import { useEffect } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm } from '@inertiajs/react';
+import InputError from "@/Components/InputError";
+import InputLabel from "@/Components/InputLabel";
+import PrimaryButton from "@/Components/PrimaryButton";
+import SideImage from "@/Components/SideImage";
+import TextInput from "@/Components/TextInput";
+import { Head, Link, useForm } from "@inertiajs/react";
+import React from "react";
+import { useEffect } from "react";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
+        name: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
     });
 
     useEffect(() => {
         return () => {
-            reset('password', 'password_confirmation');
+            reset("password", "password_confirmation");
         };
     }, []);
+
+    const onHandleChange = (event) => {
+        setData(event.target.name, event.target.value);
+    };
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('register'));
+        post(route("register"));
     };
 
     return (
-        <GuestLayout>
-            <Head title="Register" />
+        <>
+            <Head title="Sign Up" />
+            <div className="mx-auto max-w-screen min-h-screen bg-black text-white md:px-10 px-3">
+                <section className="w-[58%] overflow-hidden fixed">
+                    <SideImage />
+                </section>
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                <section className="py-24 ml-[65%]">
+                    <div className="mb-16">
+                        <img
+                            className="mb-10"
+                            src={"/images/moonton-white.svg"}
+                            alt="Logo Moonton"
+                        />
+                        <div>
+                            <h2 className="font-semibold text-2xl mb-5">
+                                Welcome Back
+                            </h2>
+                            <p className="opacity-[0.5] w-[55%] leading-7">
+                                Explore our new movie and get the better insight
+                                for your life
+                            </p>
+                        </div>
+                    </div>
+                    <form className="flex flex-col gap-8" onSubmit={submit}>
+                        <div className="inline-flex flex-col w-[70%] gap-6">
+                            <div>
+                                <InputLabel value="Name" forinput="name" />
+                                <TextInput
+                                    name="name"
+                                    id="fullName"
+                                    type="text"
+                                    value={data.name}
+                                    placeholder="Your fullname..."
+                                    required
+                                    isFocused={true}
+                                    handleChange={onHandleChange}
+                                    autoComplete="name"
+                                />
+                                <InputError message={errors.name} className="mt-2" />
+                            </div>
 
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
-                    />
+                            <div>
+                                <InputLabel
+                                    value="Email Address"
+                                    forinput="email"
+                                />
+                                <TextInput
+                                    name="email"
+                                    id="email"
+                                    type="email"
+                                    placeholder="Your Email Address"
+                                    required
+                                    handleChange={onHandleChange}
+                                    value={data.email}
+                                    autoComplete="email"
+                                />
+                                <InputError message={errors.email} className="mt-2" />
+                            </div>
 
-                    <InputError message={errors.name} className="mt-2" />
-                </div>
+                            <div>
+                                <InputLabel
+                                    value="Password"
+                                    forinput="password"
+                                />
+                                <TextInput
+                                    name="password"
+                                    id="password"
+                                    type="password"
+                                    placeholder="Password"
+                                    required
+                                    handleChange={onHandleChange}
+                                    value={data.password}
+                                    autoComplete="password"
+                                />
+                                <InputError message={errors.password} className="mt-2" />
+                            </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
+                            <div>
+                                <InputLabel
+                                    value="Confirm Password"
+                                    forinput="password"
+                                />
+                                <TextInput
+                                    name="password_confirmation"
+                                    id="password_confirmation"
+                                    type="password"
+                                    placeholder="Confirm Password"
+                                    required
+                                    handleChange={onHandleChange}
+                                    value={data.password_confirmation}
+                                    autoComplete="password_confirmation"
+                                />
+                                <InputError message={errors.password_confirmation} className="mt-2" />
+                            </div>
+                        </div>
 
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                    />
+                        <div className="grid space-y-[14px] mt-[30px] w-[70%]">
+                            <PrimaryButton processing={processing}>
+                                <span className="text-base font-semibold">
+                                    Sign Up
+                                </span>
+                            </PrimaryButton>
 
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
+                            <Link href={route("login")}>
+                                <PrimaryButton
+                                    type="button"
+                                    variant="light-outline"
+                                >
+                                    <span className="text-base text-white">
+                                        Sign In to My Account
+                                    </span>
+                                </PrimaryButton>
+                            </Link>
+                        </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
-
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password_confirmation', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password_confirmation} className="mt-2" />
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href={route('login')}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Already registered?
-                    </Link>
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Register
-                    </PrimaryButton>
-                </div>
-            </form>
-        </GuestLayout>
+                        {/* <div className="grid space-y-[14px] mt-[30px]">
+                        <a
+                            href="/"
+                            className="rounded-2xl bg-alerange py-[13px] text-center"
+                        >
+                            <span className="text-base font-semibold">Sign Up</span>
+                        </a>
+                        <a
+                            href="sign_in.html"
+                            className="rounded-2xl border border-white py-[13px] text-center"
+                        >
+                            <span className="text-base text-white">
+                                Sign In to My Account
+                            </span>
+                        </a>
+                    </div> */}
+                    </form>
+                </section>
+            </div>
+        </>
     );
 }

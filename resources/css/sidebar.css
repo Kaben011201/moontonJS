@@ -6,16 +6,16 @@
     @apply text-[#B7B7B7];
 }
 
-.side-link:focus {
+.side-link.active {
     @apply font-semibold border-r-[3px] border-alerange;
 }
 
-.side-link:focus svg {
+.side-link.active svg {
     @apply text-alerange;
 }
 
 input.top-search {
     @apply rounded-full border border-gray-2 placeholder:text-gray-1 text-base text-gray-1 px-5 py-[11px]
-        w-full max-w-[570px] focus:outline-none focus:ring-alerange focus:ring-1 transition-all bg-no-repeat bg-center
+        w-full max-w-[570px] focus:outline-none focus:ring-alerange focus:ring-1 transition-all bg-no-repeat
         bg-[center_right_20px];
 }
