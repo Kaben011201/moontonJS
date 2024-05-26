@@ -8,14 +8,20 @@ FeaturedMovie.propTypes = {
     name: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
-    rating : PropTypes.number.isRequired,
-}
+    rating: PropTypes.number.isRequired,
+};
 
-export default function FeaturedMovie({ slug, name, category, thumbnail, rating }) {
+export default function FeaturedMovie({
+    slug,
+    name,
+    category,
+    thumbnail,
+    rating,
+}) {
     return (
         <div className="absolute overflow-hidden group mr-[30px]">
             <img
-                src={thumbnail}
+                src={`/storage/${thumbnail}`}
                 className="object-cover rounded-[30px] w-[520px] h-[340px]"
                 alt=""
             />
@@ -45,7 +51,10 @@ export default function FeaturedMovie({ slug, name, category, thumbnail, rating 
                     <img src="/icons/ic_play.svg" width="50" alt="" />
                 </div>
             </div>
-            <Link href={route("user.dashboard.movie.show", slug)} className="inset-0 absolute z-50"></Link>
+            <Link
+                href={route("user.dashboard.movie.show", slug)}
+                className="inset-0 absolute z-50"
+            ></Link>
         </div>
     );
 }

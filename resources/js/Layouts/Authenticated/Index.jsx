@@ -18,7 +18,7 @@ export default function Authenticated({ auth, children }) {
                             <Topbar auth={auth.user.name}/>
                             {/* the auth above same {{Auth::user()->name}} */}
                             {/* END : Topbar */}
-                            {children}
+                            <main>{children}</main>
                         </div>
                     </div>
 
