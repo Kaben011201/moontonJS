@@ -5,7 +5,6 @@ import { UserMenu, UserOthers } from "./MenuList";
 import MenuItem from "./MenuItem";
 
 export default function Sidebar({ auth }) {
-    console.log(auth);
     return (
         <>
             <aside className="fixed z-50 w-[300px] h-full bg-white">
