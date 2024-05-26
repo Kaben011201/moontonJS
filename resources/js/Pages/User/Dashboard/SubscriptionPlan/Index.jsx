@@ -3,13 +3,51 @@ import Authenticated from "@/Layouts/Authenticated/Index";
 import { Head, router } from "@inertiajs/react";
 import React from "react";
 
-export default function SubscriptionPlan({ auth, subscriptionPlans }) {
+export default function SubscriptionPlan({ auth, subscriptionPlans, env }) {
     const selectSubs = (id) => {
-        router.post(route('user.dashboard.subscriptionPlan.userSubscribe', {subscriptionPlan : id}));
-    }
+        router.post(
+            route("user.dashboard.subscriptionPlan.userSubscribe", {
+                subscriptionPlan: id,
+            }),
+            {},
+            {
+                only: ["userSubscription"],
+                onSuccess: ({ props }) => {
+                    console.log({ props });
+                    onSnapMidtrans(props.userSubscription);
+                },
+            }
+        );
+    };
+
+    const onSnapMidtrans = (userSubscription) => {
+        snap.pay(userSubscription.snap_token, {
+            onSuccess: function (result) {
+               router.visit(route('user.dashboard.index'))
+            },
+            // Optional
+            onPending: function (result) {
+                /* You may add your own js here, this is just example */ document.getElementById(
+                    "result-json"
+                ).innerHTML += JSON.stringify(result, null, 2);
+            },
+            // Optional
+            onError: function (result) {
+                /* You may add your own js here, this is just example */ document.getElementById(
+                    "result-json"
+                ).innerHTML += JSON.stringify(result, null, 2);
+            },
+        });
+    };
+
     return (
         <Authenticated auth={auth}>
-            <Head title="Subscription" />
+            <Head title="Subscription Plan">
+                <script
+                    src="https://app.sandbox.midtrans.com/snap/snap.js"
+                    data-client-key={env.MIDTRANS_CLIENTKEY}
+                ></script>
+            </Head>
             <div className="mx-auto">
                 <div className="py-20 flex flex-col items-center">
                     <div className="text-black font-semibold text-[26px] mb-3">
@@ -22,7 +60,7 @@ export default function SubscriptionPlan({ auth, subscriptionPlans }) {
 
                     {/* <!-- Pricing Card --> */}
                     <div className="flex justify-center gap-10 mt-[70px]">
-                        {subscriptionPlans.map((subscriptionPlan) => (
+                        {subscriptionPlans?.map((subscriptionPlan) => (
                             <SubsriptionCard
                                 key={subscriptionPlan.id}
                                 name={subscriptionPlan.name}
@@ -32,7 +70,9 @@ export default function SubscriptionPlan({ auth, subscriptionPlans }) {
                                 }
                                 features={JSON.parse(subscriptionPlan.features)}
                                 isPremium={subscriptionPlan.name === "Premium"}
-                                onSelectSubs={() => selectSubs(subscriptionPlan.id)}
+                                onSelectSubs={() =>
+                                    selectSubs(subscriptionPlan.id)
+                                }
                             />
                         ))}
                     </div>

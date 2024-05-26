@@ -10,11 +10,14 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\User\DashboardController;
 
-Route::redirect('/', '/login');
 
-// Route::get('/dashboard', function () {
-//     return Inertia::render('User/Dashboard/Index');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+
+// MIDTRANS ROUTE
+Route::post('midtrans/notification', [SubscriptionPlanController::class,'midtransCallback']);
+
+
+//APP ROUTE
+Route::redirect('/', '/login');
 
 Route::middleware(['auth', 'role:user'])->prefix('dashboard')->name('user.dashboard.')->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('index');
